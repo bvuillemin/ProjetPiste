@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 f?vr. 2015 16:48:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.metier.Client" table="client" catalog="cerisaie" optimistic-lock="version">
+        <id name="numCli" type="java.lang.Integer">
+            <column name="NumCli" />
+            <generator class="identity" />
+        </id>
+        <property name="nomCli" type="string">
+            <column name="NomCli" length="30" />
+        </property>
+        <property name="adrRueCli" type="string">
+            <column name="AdrRueCli" length="40" />
+        </property>
+        <property name="cpCli" type="string">
+            <column name="CpCli" length="5" />
+        </property>
+        <property name="villeCli" type="string">
+            <column name="VilleCli" length="40" />
+        </property>
+        <property name="pieceCli" type="string">
+            <column name="PieceCli" length="10" />
+        </property>
+        <property name="numPieceCli" type="string">
+            <column name="NumPieceCli" length="20" />
+        </property>
+        <set name="sejours" table="sejour" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NumCli" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.metier.Sejour" />
+        </set>
+    </class>
+</hibernate-mapping>
