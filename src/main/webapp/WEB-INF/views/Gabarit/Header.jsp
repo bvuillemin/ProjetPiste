@@ -3,17 +3,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/custom-style.css">
 
+<title>Permis Piste</title>
 
-<title>Home</title>
-
-<script language=javascript>
-
-  function Chargement()
-  {
-    var obj = document.getElementById("id_erreur");
-    if (obj.value!='')
-      alert('Erreur signalée  : "'+obj.value+"'");
-  }
-
-</script>
 
