@@ -1,19 +1,7 @@
 package com.epul.cerisaie.controle;
 
 import com.epul.cerisaie.dao.HibernateClient;
-
-
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.epul.cerisaie.hibernate.metier.Apprenant;
-import com.epul.cerisaie.hibernate.metier.Mission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Handles requests for the application home page.
@@ -37,7 +32,7 @@ public class MultiController extends MultiActionController {
 	 */
 
 
-	@RequestMapping(value = "index.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "Index.htm", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
@@ -46,7 +41,7 @@ public class MultiController extends MultiActionController {
 				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
-		return "/index";
+		return "/Index";
 	}
 
 	/**
