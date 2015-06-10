@@ -93,6 +93,7 @@ public class HibernateClient {
 			ServiceHibernate.closeSession();
 			session = ServiceHibernate.currentSession();
 			tx = session.beginTransaction();
+			session.update(unApprenant.getObtients());
 			session.update(unApprenant);
 			tx.commit();
 		} catch (ServiceHibernateException ex) {
@@ -107,6 +108,7 @@ public class HibernateClient {
 		}
 	}
 
+
 	public void effacer(String[] tabnum) throws Exception,
 			ServiceHibernateException {
 		Transaction tx = null;
@@ -120,6 +122,7 @@ public class HibernateClient {
 
 				Apprenant unApprenant = new Apprenant();
 				unApprenant = getUneLigne(Integer.parseInt(tabnum[i]));
+				session.delete(unApprenant.getObtients());
 				session.delete(unApprenant);
 				tx.commit();
 			} catch (ServiceHibernateException ex) {
