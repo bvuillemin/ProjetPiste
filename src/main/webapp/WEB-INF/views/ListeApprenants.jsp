@@ -31,20 +31,12 @@
       <th>Numéro Client </th>
       <th>Nom Client</th>
       <th>Adresse Client</th>
-      <th> Code postal</th>
-      <th>Ville</th>
-      <th> Type de pièce d'identité</th>
-      <th> Numéro de pièce d'identité</th>
     </tr>
-  <c:forEach  items="${mesclients}"  var="item" >
+  <c:forEach  items="${mesapprenants}"  var="item" >
   <tr>
-     <td>${item.numCli}</td>
-     <td>${item.nomCli}</td>
-     <td>${item.adrRueCli}</td>
-     <td>${item.cpCli}</td>
-     <td>${item.villeCli}</td>
-      <td>${item.pieceCli}</td>
-     <td>${item.numPieceCli}</td>
+     <td>${item.numapprenant}</td>
+     <td>${item.nomapprenant}</td>
+     <td>${item.prenomapprenant}</td>
     
   </tr>
  </c:forEach>	  

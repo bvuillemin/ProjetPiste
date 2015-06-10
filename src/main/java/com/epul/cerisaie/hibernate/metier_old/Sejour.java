@@ -1,6 +1,6 @@
-package com.epul.cerisaie.hibernate.metier;
+package com.epul.cerisaie.hibernate.metier_old;
 
-// Generated 21 févr. 2015 16:48:28 by Hibernate Tools 4.3.1
+// Generated 21 fï¿½vr. 2015 16:48:28 by Hibernate Tools 4.3.1
 
 import java.util.*;
 

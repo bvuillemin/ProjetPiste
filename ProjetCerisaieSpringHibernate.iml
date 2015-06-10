@@ -29,7 +29,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="SessionFactory" />
+          <unit-entry name="SessionFactory" value="5084324a-2deb-491a-b40d-4f25a0d6a4bc" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/.idea/vcs.xml" />
