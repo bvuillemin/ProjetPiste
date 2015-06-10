@@ -41,6 +41,27 @@ public class HibernateClient {
 		return mesApprenants;
 	}
 
+	public Apprenant getUneLigne(int num) throws ServiceHibernateException ,Exception{
+		boolean trouve = false;
+		Apprenant unApprenant = null;
+		try {
+			mesApprenants = getTouteslesLignes();
+			int i =0;
+			while (i < mesApprenants.size() && !trouve) {
+				unApprenant = mesApprenants.get(i);
+				if (unApprenant.getNumapprenant() == num)
+					trouve = true;
+				i++;
+			}
+		} catch (ServiceHibernateException ex) {
+			throw new ServiceHibernateException("Erreur de service Hibernate: "
+					+ ex.getMessage(), ex);
+		} catch (Exception ex) {
+			throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+		}
+		return unApprenant;
+	}
+
 	public void ajouter(Apprenant unApprenant) throws HibernateException,
 			ServiceHibernateException {
 		Transaction tx = null;
@@ -59,6 +80,58 @@ public class HibernateClient {
 			}
 			// on remonte l'erreur
 			throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+		}
+	}
+
+	public void modifier(Apprenant unApprenant) throws Exception,
+			ServiceHibernateException {
+
+		Transaction tx = null;
+		try {
+			// il faut fermer la session courante pour
+			// lib�rer l'objet que l'on veut modifier
+			ServiceHibernate.closeSession();
+			session = ServiceHibernate.currentSession();
+			tx = session.beginTransaction();
+			session.update(unApprenant);
+			tx.commit();
+		} catch (ServiceHibernateException ex) {
+			throw new ServiceHibernateException("Erreur de service Hibernate: "
+					+ ex.getMessage(), ex);
+		} catch (Exception ex) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			// on remonte l'erreur
+			throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+		}
+	}
+
+	public void effacer(String[] tabnum) throws Exception,
+			ServiceHibernateException {
+		Transaction tx = null;
+		for (int i = 0; i < tabnum.length; i++) {
+			try {
+				// il faut fermer la session courante pour
+				// lib�rer l'objet que l'on veut modifier
+				ServiceHibernate.closeSession();
+				session = ServiceHibernate.currentSession();
+				tx = session.beginTransaction();
+
+				Apprenant unApprenant = new Apprenant();
+				unApprenant = getUneLigne(Integer.parseInt(tabnum[i]));
+				session.delete(unApprenant);
+				tx.commit();
+			} catch (ServiceHibernateException ex) {
+				throw new ServiceHibernateException(
+						"Erreur de service Hibernate: " + ex.getMessage(), ex);
+			} catch (Exception ex) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				// on remonte l'erreur
+				throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+			}
 		}
 	}
 }
