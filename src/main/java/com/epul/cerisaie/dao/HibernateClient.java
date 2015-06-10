@@ -40,4 +40,25 @@ public class HibernateClient {
 		}
 		return mesApprenants;
 	}
+
+	public void ajouter(Apprenant unApprenant) throws HibernateException,
+			ServiceHibernateException {
+		Transaction tx = null;
+		try {
+			session = ServiceHibernate.currentSession();
+			tx = session.beginTransaction();
+			// on transf�re l'apprenant � la base
+			session.save(unApprenant);
+			tx.commit();
+		} catch (ServiceHibernateException ex) {
+			throw new ServiceHibernateException("Erreur de service Hibernate: "
+					+ ex.getMessage(), ex);
+		} catch (Exception ex) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			// on remonte l'erreur
+			throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+		}
+	}
 }
