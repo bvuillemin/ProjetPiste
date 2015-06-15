@@ -7,5 +7,7 @@
 
   <h1>Scores</h1>
   <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
+  <table class="table table-bordered">
 
+  </table>
 </template:Template>
