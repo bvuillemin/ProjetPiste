@@ -224,16 +224,19 @@ public class MultiController extends MultiActionController {
             // effacement de la liste des id
             if (id != null) {
                 System.out.println(id);
+                Apprenant a = unGestClient.getUneLigne(Integer.parseInt(id));
+                unGestClient.effacer(a);
                 //unGestClient.effacer(id);
             }
             unGestClient = new HibernateClient();
             // preparation de la liste
             List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
             request.setAttribute("mesapprenants", mesApprenants);
+            destinationPage = "/ListeApprenants";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/ListeApprenants";
         return new ModelAndView(destinationPage);
     }
 
