@@ -19,22 +19,14 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle"
              data-toggle="dropdown" role="button"
-             aria-expanded="false">Jouets <span class="caret"></span></a>
+             aria-expanded="false">Apprenants <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="afficherJouets.htm">Affichage</a></li>
-            <li><a href="ajouterJouet.htm">Ajout</a></li>
+            <li><a href="ListeApprenants.htm">Affichage</a></li>
+            <li><a href="AjoutApprenant.htm">Ajout</a></li>
           </ul>
         </li>
-        <li><a href="listerCatalogue.htm">Affichage des catalogues</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle"
-             data-toggle="dropdown" role="button"
-             aria-expanded="false">Dictionnaires <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="selectionnerAnnee.htm">Affichage simple</a></li>
-            <li><a href="selectionnerAnneeCateg.htm">Affichage avec catégories</a></li>
-          </ul>
-        </li>
+        <li><a href="ListeJeux.htm">Affichage des Jeux</a></li>
+        <li><a href="/ListeScores.htm">Scores</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

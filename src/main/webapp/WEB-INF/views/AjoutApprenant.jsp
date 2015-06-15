@@ -5,7 +5,7 @@
 
 <template:Template>
 
-    <h1>Liste des jeux</h1>
-    <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
+  <h1>Ajouter un Apprenant</h1>
+  <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
 
 </template:Template>

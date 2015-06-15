@@ -5,14 +5,14 @@
 
 <template:Template>
 
-    <h1>Liste des Clients</h1>
+    <h1>Liste des Apprenants</h1>
     <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
-    <p><a href="index.htm">[Accueil]</a><a href="index.htm">[Accueil]</a></p>
+    <p><a href="Index.htm">[Accueil]</a></p>
     <table>
         <tr>
-            <th>Numéro Client</th>
-            <th>Nom Client</th>
-            <th>Adresse Client</th>
+            <th>Numéro Apprenant</th>
+            <th>Nom Apprenant</th>
+            <th>Prénom Apprenant</th>
         </tr>
         <c:forEach items="${mesapprenants}" var="item">
             <tr>
