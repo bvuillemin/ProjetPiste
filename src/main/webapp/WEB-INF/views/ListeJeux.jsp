@@ -10,7 +10,7 @@
 
     <div class="container">
 
-        <table class="table table-striped">
+        <table class="table table-bordered">
             <tr>
                 <th>Numéro Jeu</th>
                 <th>Libellé du Jeu</th>
@@ -21,7 +21,7 @@
                     <td>${item.numjeu}</td>
                     <td>${item.libellejeu}</td>
                     <td>
-                        <form method="post" action="inscriptionJeu.htm">
+                        <form method="post" action="InscriptionJeu.htm">
                             <input type="hidden" name="id" value="${item.numjeu}"/>
                             <button class="btn btn-info col-lg-10" type="submit" name="inscription" value="Inscription">Inscription
                             </button>
@@ -29,12 +29,6 @@
                     </td>
                 </tr>
             </c:forEach>
-
-            <tr>
-                <td colspan="5">
-                    &nbsp;&nbsp;
-                </td>
-            </tr>
         </table>
     </div>
 </template:Template>
