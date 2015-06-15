@@ -21,13 +21,13 @@
             </tr>
             <tr>
                 <td>Prénom</td>
-                <td><input type="text" name="libelle"
+                <td><input type="text" name="prenom"
                            value="${apprenant.prenomapprenant}" id="prenom"/></td>
             </tr>
 
             <tr>
                 <td>Nom</td>
-                <td><input type="text" name="libelle"
+                <td><input type="text" name="nom"
                            value="${apprenant.nomapprenant}" id="nom"/></td>
             </tr>
 
