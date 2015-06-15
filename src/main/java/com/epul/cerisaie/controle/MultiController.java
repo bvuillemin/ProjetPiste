@@ -47,7 +47,7 @@ public class MultiController extends MultiActionController {
     /**
      * Affichage de tous les jouets
      */
-    @RequestMapping(value = "afficherClients.htm")
+    @RequestMapping(value = "ListeApprenants.htm")
     public ModelAndView afficherLesClients(HttpServletRequest request,
                                            HttpServletResponse response) throws Exception {
         String destinationPage;
