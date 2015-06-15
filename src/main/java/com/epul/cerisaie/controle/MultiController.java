@@ -74,21 +74,23 @@ public class MultiController extends MultiActionController {
      */
     @RequestMapping(value = "sauverApprenants.htm")
     public ModelAndView sauverApprenant(HttpServletRequest request,
-                                           HttpServletResponse response) throws Exception {
+                                        HttpServletResponse response) throws Exception {
         String destinationPage;
 
         HibernateClient unGestClient = new HibernateClient();
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             Apprenant monApprenant = unGestClient.getUneLigne(id);
-            System.out.println(request.getAttribute("nom"));
-            /*monApprenant.setNomapprenant((String) request.getAttribute("apprenant.nomapprenant"));
-            monApprenant.setPrenomapprenant((String) request.getAttribute("apprenant.prenomapprenant"));*/
+            monApprenant.setNomapprenant(request.getParameter("nom"));
+            monApprenant.setPrenomapprenant(request.getParameter("prenom"));
             unGestClient.modifier(monApprenant);
+            List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("mesapprenants", mesApprenants);
+            destinationPage = "/ListeApprenants";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/ListeApprenants";
 
         return new ModelAndView(destinationPage);
 
@@ -100,16 +102,14 @@ public class MultiController extends MultiActionController {
     @RequestMapping(value = "modifierApprenant.htm")
 
     public ModelAndView modifierApprenant(HttpServletRequest request,
-                                      HttpServletResponse response) throws Exception {
+                                          HttpServletResponse response) throws Exception {
 
         String destinationPage = "Erreur";
-        try
-        {
+        try {
             HibernateClient unGestClient = new HibernateClient();
             int id = Integer.parseInt(request.getParameter("id"));
 
-            if (unGestClient != null)
-            {
+            if (unGestClient != null) {
                 Apprenant unApprenant = unGestClient.getUneLigne(id);
                 request.setAttribute("apprenant", unApprenant);
                 destinationPage = "/ModifierApprenant";
@@ -229,7 +229,6 @@ public class MultiController extends MultiActionController {
                 unGestClient.effacer(a);
                 //unGestClient.effacer(id);
             }
-            unGestClient = new HibernateClient();
             // preparation de la liste
             List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
             request.setAttribute("mesapprenants", mesApprenants);
