@@ -70,6 +70,33 @@ public class MultiController extends MultiActionController {
 
 
     /**
+     * Modifier apprenant
+     */
+    @RequestMapping(value = "ajouterApprenant.htm")
+    public ModelAndView ajouterApprenant(HttpServletRequest request,
+                                         HttpServletResponse response) throws Exception {
+
+        String destinationPage = "Erreur";
+        try {
+            HibernateClient unGestClient = new HibernateClient();
+            if (unGestClient != null) {
+                Apprenant unApprenant = new Apprenant();
+                unApprenant.setNomapprenant(request.getParameter("nom"));
+                unApprenant.setPrenomapprenant(request.getParameter("prenom"));
+                unApprenant.setNumapprenant(Integer.parseInt(request.getParameter("id")));
+                unGestClient.ajouter(unApprenant);
+                destinationPage = "/ModifierApprenant";
+            }
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+
+        return new ModelAndView(destinationPage);
+    }
+
+
+    /**
      * Sauvegarde d'un apprenant
      */
     @RequestMapping(value = "sauverApprenants.htm")
