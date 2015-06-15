@@ -151,4 +151,24 @@ public class HibernateClient {
         }
         return mesJeux;
     }
+    public Jeu getUneLigneJeu(int num) throws ServiceHibernateException, Exception {
+        boolean trouve = false;
+        Jeu unJeu = null;
+        try {
+            mesJeux = getTouslesJeux();
+            int i = 0;
+            while (i < mesJeux.size() && !trouve) {
+                unJeu = mesJeux.get(i);
+                if (unJeu.getNumjeu() == num)
+                    trouve = true;
+                i++;
+            }
+        } catch (ServiceHibernateException ex) {
+            throw new ServiceHibernateException("Erreur de service Hibernate: "
+                    + ex.getMessage(), ex);
+        } catch (Exception ex) {
+            throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+        }
+        return unJeu;
+    }
 }

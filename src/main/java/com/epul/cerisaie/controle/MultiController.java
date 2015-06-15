@@ -283,12 +283,36 @@ public class MultiController extends MultiActionController {
         try {
             List<Jeu> mesJeux = unGestClient.getTouslesJeux();
             request.setAttribute("mesjeux", mesJeux);
-            System.out.println(mesJeux.toString());
 
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
         }
         destinationPage = "/ListeJeux";
+
+        return new ModelAndView(destinationPage);
+
+    }
+    /**
+     * Affichage de tous les jouets
+     */
+    @RequestMapping(value = "DetailsJeu.htm")
+    public ModelAndView detailleLesJeux(HttpServletRequest request,
+                                        HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            int id = Integer.valueOf(request.getParameter("id"));
+            Jeu monJeu = unGestClient.getUneLigneJeu(id);
+            request.setAttribute("monjeu", monJeu);
+            request.setAttribute("mesmissions", monJeu.getMissions());
+            request.setAttribute("mesactions", monJeu.getActions());
+            destinationPage = "/DetailsJeu";
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
+        }
 
         return new ModelAndView(destinationPage);
 

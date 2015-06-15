@@ -15,6 +15,7 @@
                 <th>Numéro Jeu</th>
                 <th>Libellé du Jeu</th>
                 <th>Inscription au Jeu</th>
+                <th>Détails du Jeu</th>
             </tr>
             <c:forEach items="${mesjeux}" var="item">
                 <tr>
@@ -23,7 +24,16 @@
                     <td>
                         <form method="post" action="InscriptionJeu.htm">
                             <input type="hidden" name="id" value="${item.numjeu}"/>
-                            <button class="btn btn-info col-lg-10" type="submit" name="inscription" value="Inscription">Inscription
+                            <button class="btn btn-info col-lg-10" type="submit" name="inscription" value="Inscription">
+                                Inscription
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="DetailsJeu.htm">
+                            <input type="hidden" name="id" value="${item.numjeu}"/>
+                            <button class="btn btn-info col-lg-10" type="submit" name="details" value="Details">
+                                Détails
                             </button>
                         </form>
                     </td>
