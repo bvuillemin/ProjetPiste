@@ -22,14 +22,14 @@
                 <td>${item.prenomapprenant}</td>
                 <td>
                     <form method="post" action="modifierApprenant.htm">
-                        <input type="hidden" name="id" value="${item.numapprenant}"/>
+                        <input type="hidden" name="id" value="${item}"/>
                         <button class="btn btn-info col-lg-10" type="submit" name="modifier" value="Modifier">Modifier
                         </button>
                     </form>
                 </td>
                 <td>
                     <form method="post" action="effacerApprenant.htm">
-                        <input type="hidden" name="id" value="${item.numapprenant}"/>
+                        <input type="hidden" name="id" value="${item}"/>
                         <button class="btn btn-danger col-lg-10" type="submit" name="supprimer" value="Supprimer">
                             Supprimer
                         </button>
