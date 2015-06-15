@@ -24,48 +24,137 @@ import java.util.Locale;
 @Controller
 public class MultiController extends MultiActionController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(MultiController.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(MultiController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+    /**
+     * Simply selects the home view to render by returning its name.
+     */
 
 
-	@RequestMapping(value = "Index.htm", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+    @RequestMapping(value = "Index.htm", method = RequestMethod.GET)
+    public String home(Locale locale, Model model) {
+        logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate);
-		return "/Index";
-	}
+        Date date = new Date();
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+                DateFormat.LONG, locale);
+        String formattedDate = dateFormat.format(date);
+        model.addAttribute("serverTime", formattedDate);
+        return "/Index";
+    }
 
-	/**
-	 * Affichage de tous les jouets
-	 */
-@RequestMapping(value = "afficherClients.htm")
-public ModelAndView afficherLesClients(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-			String destinationPage;	
+    /**
+     * Affichage de tous les jouets
+     */
+    @RequestMapping(value = "afficherClients.htm")
+    public ModelAndView afficherLesClients(HttpServletRequest request,
+                                           HttpServletResponse response) throws Exception {
+        String destinationPage;
 
-				HibernateClient  unGestClient = new HibernateClient ();
-				try {
-					List<Apprenant> mesApprenants =unGestClient.getTouteslesLignes();
-					request.setAttribute("mesapprenants",mesApprenants);
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("mesapprenants", mesApprenants);
 
-				} catch (Exception e) {
-					request.setAttribute("MesErreurs", e.getMessage());
-				}
-				destinationPage = "/ListeApprenants";
-				
-				return new ModelAndView(destinationPage);
-				
-			}
-	
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeApprenants";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Selection d'un apprenant pour l'affichage des scores
+     */
+    @RequestMapping(value = "SelectApprenantScore.htm")
+    public ModelAndView selectApprenantScore(HttpServletRequest request,
+                                             HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            List<Apprenant> mesapprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("mesapprenants", mesapprenants);
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/SelectApprenantScore";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Affichage des scores
+     */
+    @RequestMapping(value = "ListeScores.htm")
+    public ModelAndView afficherLesScores(HttpServletRequest request,
+                                          HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            Apprenant monapprenant = unGestClient.getUneLigne(0);
+            request.setAttribute("monapprenant", monapprenant);
+            request.setAttribute("messcores", monapprenant.getObtients());
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeScores";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Selection d'un apprenant pour l'affichage des scores
+     */
+    @RequestMapping(value = "SelectApprenantBilan.htm")
+    public ModelAndView selectApprenantBilan(HttpServletRequest request,
+                                             HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            List<Apprenant> mesapprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("mesapprenants", mesapprenants);
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/SelectApprenantBilan";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Affichage des scores
+     */
+    @RequestMapping(value = "Bilan.htm")
+    public ModelAndView afficherLeBilan(HttpServletRequest request,
+                                        HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            Apprenant monapprenant = unGestClient.getUneLigne(0);
+            request.setAttribute("monapprenant", monapprenant);
+            request.setAttribute("messcores", monapprenant.getObtients());
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/Bilan";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+
 }
 
 	

@@ -31,7 +31,6 @@ public class HibernateClient {
 			// On passe une requ�te de type SQL mlais on travaille sur la classe
 			Query query = session.createQuery("SELECT s  FROM Apprenant AS s");
 			mesApprenants =  (List<Apprenant>) query.list();
-			System.out.println(mesApprenants.toString());
 		} catch (Exception ex) {
 			
 			System.out.println("Erreur ServiceHiber : " + ex.getMessage());
