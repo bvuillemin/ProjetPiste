@@ -3,4 +3,6 @@
 
 <template:Template>
     <h1>Bienvenue sur notre application Permis Piste</h1>
+    <br>
+    <img src="/resources/image/Permis.jpg" alt="Problème d'affichage" id="imageAccueil">
 </template:Template>
