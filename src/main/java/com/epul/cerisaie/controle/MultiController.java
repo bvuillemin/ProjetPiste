@@ -92,6 +92,7 @@ public class MultiController extends MultiActionController {
 
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
 
         return new ModelAndView(destinationPage);
