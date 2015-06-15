@@ -85,7 +85,9 @@ public class MultiController extends MultiActionController {
                 unApprenant.setPrenomapprenant(request.getParameter("prenom"));
                 unApprenant.setNumapprenant(Integer.parseInt(request.getParameter("id")));
                 unGestClient.ajouter(unApprenant);
-                destinationPage = "/ModifierApprenant";
+                List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+                request.setAttribute("mesapprenants", mesApprenants);
+                destinationPage = "/ListeApprenants";
             }
 
         } catch (Exception e) {
