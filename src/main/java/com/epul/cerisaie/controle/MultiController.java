@@ -157,11 +157,39 @@ public class MultiController extends MultiActionController {
     }
 
     /**
+     * effacer  Apprenant
+     */
+    @RequestMapping(value = "effacerApprenant.htm")
+    public ModelAndView effacerApprenant(HttpServletRequest request) throws Exception {
+
+        String destinationPage;
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            // recuperation de la liste des id a effacer
+            String id = request.getParameter("id");
+            // effacement de la liste des id
+            if (id != null) {
+                System.out.println(id);
+                unGestClient.effacer(id);
+            }
+            unGestClient = new HibernateClient();
+            // preparation de la liste
+            List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("mesapprenants", mesApprenants);
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeApprenants";
+        return new ModelAndView(destinationPage);
+    }
+
+
+    /**
      * Affichage de tous les jouets
      */
     @RequestMapping(value = "ListeJeux.htm")
     public ModelAndView afficherLesJeux(HttpServletRequest request,
-                                           HttpServletResponse response) throws Exception {
+                                        HttpServletResponse response) throws Exception {
         String destinationPage;
 
         HibernateClient unGestClient = new HibernateClient();
