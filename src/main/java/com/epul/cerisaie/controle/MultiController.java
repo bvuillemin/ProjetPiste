@@ -81,8 +81,9 @@ public class MultiController extends MultiActionController {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             Apprenant monApprenant = unGestClient.getUneLigne(id);
-            monApprenant.setNomapprenant((String) request.getAttribute("nom"));
-            monApprenant.setPrenomapprenant((String) request.getAttribute("prenom"));
+            System.out.println(request.getAttribute("nom"));
+            /*monApprenant.setNomapprenant((String) request.getAttribute("apprenant.nomapprenant"));
+            monApprenant.setPrenomapprenant((String) request.getAttribute("apprenant.prenomapprenant"));*/
             unGestClient.modifier(monApprenant);
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
