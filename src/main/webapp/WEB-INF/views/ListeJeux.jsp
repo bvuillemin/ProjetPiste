@@ -5,24 +5,36 @@
 
 <template:Template>
 
-    <h1>Liste des Clients</h1>
+    <h1>Liste des Jeux</h1>
     <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
-    <table>
-        <tr>
-            <th>Numéro Client</th>
-            <th>Nom Client</th>
-        </tr>
-        <c:forEach items="${mesjeux}" var="item">
-            <tr>
-                <td>${item.numjeu}</td>
-                <td>${item.libellejeu}</td>
-            </tr>
-        </c:forEach>
 
-        <tr>
-            <td colspan="5">
-                &nbsp;&nbsp;
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+
+        <table class="table table-striped">
+            <tr>
+                <th>Numéro Jeu</th>
+                <th>Libellé du Jeu</th>
+                <th>Inscription au Jeu</th>
+            </tr>
+            <c:forEach items="${mesjeux}" var="item">
+                <tr>
+                    <td>${item.numjeu}</td>
+                    <td>${item.libellejeu}</td>
+                    <td>
+                        <form method="post" action="inscriptionJeu.htm">
+                            <input type="hidden" name="id" value="${item.numjeu}"/>
+                            <button class="btn btn-info col-lg-10" type="submit" name="inscription" value="Inscription">Inscription
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+
+            <tr>
+                <td colspan="5">
+                    &nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
 </template:Template>
