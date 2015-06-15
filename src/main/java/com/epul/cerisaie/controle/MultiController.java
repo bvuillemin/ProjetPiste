@@ -2,6 +2,7 @@ package com.epul.cerisaie.controle;
 
 import com.epul.cerisaie.dao.HibernateClient;
 import com.epul.cerisaie.hibernate.metier.Apprenant;
+import com.epul.cerisaie.hibernate.metier.Jeu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.SchemaOutputResolver;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -154,7 +156,28 @@ public class MultiController extends MultiActionController {
 
     }
 
+    /**
+     * Affichage de tous les jouets
+     */
+    @RequestMapping(value = "ListeJeux.htm")
+    public ModelAndView afficherLesJeux(HttpServletRequest request,
+                                           HttpServletResponse response) throws Exception {
+        String destinationPage;
 
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            List<Jeu> mesJeux = unGestClient.getTouslesJeux();
+            request.setAttribute("mesjeux", mesJeux);
+            System.out.println(mesJeux.toString());
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeJeux";
+
+        return new ModelAndView(destinationPage);
+
+    }
 }
 
 	

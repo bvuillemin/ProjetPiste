@@ -1,6 +1,7 @@
 package com.epul.cerisaie.dao;
 
 import com.epul.cerisaie.hibernate.metier.Apprenant;
+import com.epul.cerisaie.hibernate.metier.Jeu;
 import com.epul.cerisaie.hibernate.metier.Mission;
 import org.hibernate.*;
 
@@ -14,6 +15,7 @@ public class HibernateClient {
 	
 	
 	private List<Apprenant> mesApprenants = null;
+	private List<Jeu> mesJeux = null;
 	private Session session;
 
 	// On r�cup�re toutes les lignes de la table dans une liste
@@ -39,6 +41,7 @@ public class HibernateClient {
 		}
 		return mesApprenants;
 	}
+
 
 	public Apprenant getUneLigne(int num) throws ServiceHibernateException ,Exception{
 		boolean trouve = false;
@@ -135,5 +138,21 @@ public class HibernateClient {
 				throw new MonException("Erreur  Hibernate: ", ex.getMessage());
 			}
 		}
+	}
+	public List<Jeu> getTouslesJeux() throws HibernateException,
+			ServiceHibernateException {
+		try {
+			System.out.println("Get tous les Jeux :Je vais lire le fichier de conf ");
+			session = ServiceHibernate.currentSession();
+			// On passe une requ�te de type SQL mlais on travaille sur la classe
+			Query query = session.createQuery("SELECT j  FROM Jeu AS j");
+			mesJeux =  (List<Jeu>) query.list();
+		} catch (Exception ex) {
+
+			System.out.println("Erreur ServiceHiber : " + ex.getMessage());
+
+			throw new MonException("Erreur  Hibernate: ",ex.getMessage());
+		}
+		return mesJeux;
 	}
 }
