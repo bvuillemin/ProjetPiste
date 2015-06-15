@@ -68,6 +68,60 @@ public class MultiController extends MultiActionController {
 
     }
 
+
+    /**
+     * Sauvegarde d'un apprenant
+     */
+    @RequestMapping(value = "sauverApprenants.htm")
+    public ModelAndView sauverApprenant(HttpServletRequest request,
+                                           HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Apprenant monApprenant = unGestClient.getUneLigne(id);
+            request.setAttribute("mesapprenants", monApprenant);
+            //pas fini du tout
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeApprenants";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Modifier apprenant
+     */
+    @RequestMapping(value = "modifierApprenant.htm")
+
+    public ModelAndView modifierApprenant(HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
+
+        String destinationPage = "Erreur";
+        try
+        {
+            HibernateClient unGestClient = new HibernateClient();
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            if (unGestClient != null)
+            {
+                Apprenant unApprenant = unGestClient.getUneLigne(id);
+                request.setAttribute("apprenant", unApprenant);
+                destinationPage = "/ModifierApprenant";
+            }
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+
+        return new ModelAndView(destinationPage);
+    }
+
+
     /**
      * Selection d'un apprenant pour l'affichage des scores
      */
@@ -170,7 +224,7 @@ public class MultiController extends MultiActionController {
             // effacement de la liste des id
             if (id != null) {
                 System.out.println(id);
-                unGestClient.effacer(id);
+                //unGestClient.effacer(id);
             }
             unGestClient = new HibernateClient();
             // preparation de la liste

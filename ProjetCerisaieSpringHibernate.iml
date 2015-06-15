@@ -61,7 +61,7 @@
     <orderEntry type="library" name="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER" level="application" />
     <orderEntry type="library" name="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0" level="application" />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="hibernate-jpa-2.1-api-1.0.0.Draft-6.jar">
         <CLASSES>
           <root url="file://D:/epul/progrrepartie/ressources/package java/hibernate/hibernate-jpa-2.1-api-1.0.0.Draft-6.jar" />
