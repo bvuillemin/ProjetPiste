@@ -95,7 +95,7 @@ public class HibernateClient {
             ServiceHibernate.closeSession();
             session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
-            session.update(unApprenant.getObtients());
+            //session.update(unApprenant.getObtients());
             session.update(unApprenant);
             tx.commit();
         } catch (ServiceHibernateException ex) {
