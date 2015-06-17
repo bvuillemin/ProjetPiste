@@ -26,7 +26,7 @@
                     <td><LABEL FOR=jeu>${unjeu.libellejeu}</LABEL></td>
                 </tr>
                 <tr>
-                    <td>Numéro d'apprenant</td>
+                    <td>Nom de l'apprenant</td>
                     <td>
                         <FORM>
                             <SELECT name="apprenants" size="1">
@@ -36,14 +36,14 @@
                             </SELECT>
                         </FORM>
                 </tr>
-
-                <!-- Boutons Modifier -->
                 <tr>
-                    <td><input class="btn btn-info col-lg-10" type="submit" name="inscrire"
-                               value="Inscrire"/></td>
+                    <td>
+                        <input class="btn btn-info col-lg-10" type="submit" name="inscrire"
+                               value="Inscrire"/>
+                    </td>
                 </tr>
             </table>
-            <input type="hidden" name="jeu" value="${mesapprenants}}" id="jeu"/>
+            <input type="hidden" name="jeu" value="${mesapprenants}" id="jeu"/>
         </form>
 
     </div>
