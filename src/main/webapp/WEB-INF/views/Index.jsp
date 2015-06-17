@@ -3,7 +3,7 @@
 
 <template:Template>
     <h1>Bienvenue sur notre application Permis Piste</h1>
-
+    <br/>
     <div class="row col-lg-2"></div>
     <div class="row col-lg-8 center-block">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -12,21 +12,52 @@
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="5"></li>
             </ol>
 
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/resources/image/voiture.jpg" alt="voiture">
+                <div class="item  active">
+                    <img src="/resources/image/avion.jpg" alt="Erreur d'affichage">
+
+                    <div class="carousel-caption">
+                        <h2>Planer vers d'autres horizons</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/resources/image/voiture.jpg" alt="Erreur d'affichage">
 
                     <div class="carousel-caption">
                         <h2>Rouler vers l'excellence</h2>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="/resources/image/avion.jpg" alt="avion">
+                    <img src="/resources/image/moto.jpg" alt="Erreur d'affichage">
 
                     <div class="carousel-caption">
-                        <h2>Planer vers d'autres horizons</h2>
+                        <h2>Pourquoi pas 2 roues</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/resources/image/avion2.jpg" alt="Erreur d'affichage">
+
+                    <div class="carousel-caption">
+                        <h2>Un peu d'air pur</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/resources/image/voiture2.jpg" alt="Erreur d'affichage">
+
+                    <div class="carousel-caption">
+                        <h2>Adhérence maximale !</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/resources/image/moto2.jpg" alt="Erreur d'affichage">
+
+                    <div class="carousel-caption">
+                        <h2>Toujours plus</h2>
                     </div>
                 </div>
             </div>
