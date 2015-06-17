@@ -16,7 +16,7 @@
                 type="hidden" name="type" value="modif" id="type"/>
 
             <table class="table">
-                <!-- input fields -->
+
                 <tr>
                     <td>Numéro</td>
                     <td><LABEL FOR=id>${apprenant.numapprenant}</LABEL></td>
