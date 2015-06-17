@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <template:Template>
 
     <h4>Inscrire un apprenant</h4>
@@ -36,16 +37,11 @@
                             </SELECT>
                         </FORM>
                 </tr>
-                <tr>
-                    <td>
-                        <input class="btn btn-info col-lg-10" type="submit" name="inscrire"
-                               value="Inscrire"/>
-                    </td>
-                </tr>
-            </table>
-            <input type="hidden" name="jeu" value="${mesapprenants}" id="jeu"/>
-        </form>
 
+            </table>
+            <input class="btn btn-info col-lg-6" type="submit" name="inscription"
+                   value="inscription"/>
+        </form>
     </div>
 
 </template:Template>
