@@ -26,7 +26,6 @@
           </ul>
         </li>
         <li><a href="ListeJeux.htm">Affichage des Jeux</a></li>
-        <li><a href="/ListeScores.htm">Scores</a></li>
       </ul>
     </div>
   </div>
