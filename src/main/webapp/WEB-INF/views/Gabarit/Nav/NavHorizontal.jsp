@@ -29,7 +29,5 @@
         <li><a href="/ListeScores.htm">Scores</a></li>
       </ul>
     </div>
-    <!-- /.navbar-collapse -->
   </div>
-  <!-- /.container-fluid -->
 </nav>

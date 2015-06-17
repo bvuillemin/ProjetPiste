@@ -8,8 +8,6 @@
     <h4>Ajouter un apprenant</h4>
 
     <div class="row col-md-5">
-        <input type="hidden" name="uneErreur" value="${MesErreurs}"
-               id="id_erreur">
 
         <form method="post" action="ajouterApprenant.htm">
             <input type="hidden" name="type" value="ajout" id="type"/>

@@ -1,7 +1,9 @@
 body {
     padding-top: 70px;
     background-color: #eeeeee;
+    width: 98%;
 }
+
 #face {
     font-size: 110pt;
     font-family: "trebuchet MS", Verdana, sans-serif;
