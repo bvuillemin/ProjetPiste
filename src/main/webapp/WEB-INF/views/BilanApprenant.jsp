@@ -11,6 +11,7 @@
     <h3>Liste des scores</h3>
     <table class="table table-striped">
         <tr>
+            <th>Jeu</th>
             <th>Action</th>
             <th>Score Minimal</th>
             <th>Valeur de début</th>
@@ -24,18 +25,19 @@
                     <td>${itemactions.libaction}</td>
                     <td>${itemactions.scoremin}</td>
                     <c:forEach items="${messcores}" var="itemscore">
-                        <c:if test="${itemscore.action.numaction = itemactions.numaction}">
+                        <c:if test="${itemscore.action.numaction == itemactions.numaction}">
                             <td>${itemscore.valeurdebut}</td>
                             <td>${itemscore.valeurfin}</td>
+                            <td>
+                                <c:if test="${itemactions.scoremin < (itemscore.valeurdebut + itemscore.valeurfin)}"> 
+                                    Validé 
+                                </c:if> 
+                                <c:if test="${itemactions.scoremin >= (itemscore.valeurdebut + itemscore.valeurfin)}"> 
+                                    Non validé 
+                                </c:if>
+                            </td>
                         </c:if>
-                        <td>${itemscore.libaction}</td>
                     </c:forEach>
-                    <c:if test="${itemscore.action.scoremin < (itemscore.valeurdebut + itemscore.valeurfin)}"> 
-                        Validé 
-                    </c:if> 
-                    <c:if test="${itemscore.action.scoremin >= (itemscore.valeurdebut + itemscore.valeurfin)}"> 
-                        Non validé 
-                    </c:if>
                 </tr>
             </c:forEach>
         </c:forEach>
