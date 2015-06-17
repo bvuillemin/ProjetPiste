@@ -3,6 +3,7 @@ package com.epul.cerisaie.dao;
 import com.epul.cerisaie.hibernate.metier.Apprenant;
 import com.epul.cerisaie.hibernate.metier.Jeu;
 import com.epul.cerisaie.hibernate.metier.Mission;
+import com.epul.cerisaie.hibernate.metier.Obtient;
 import org.hibernate.*;
 
 import com.epul.cerisaie.service.ServiceHibernate;
@@ -120,7 +121,6 @@ public class HibernateClient {
             ServiceHibernate.closeSession();
             session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
-
             session.delete(unApprenant);
             tx.commit();
         } catch (ServiceHibernateException ex) {
