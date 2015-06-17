@@ -120,6 +120,7 @@ public class HibernateClient {
             ServiceHibernate.closeSession();
             session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
+
             session.delete(unApprenant);
             tx.commit();
         } catch (ServiceHibernateException ex) {
