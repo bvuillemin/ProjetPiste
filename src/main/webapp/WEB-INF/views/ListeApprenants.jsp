@@ -9,7 +9,7 @@
 
     <div class="row">
         <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
-        <table class="table table-striped">
+        <table class="table table-bordered">
             <tr>
                 <th>Numéro Apprenant</th>
                 <th>Nom Apprenant</th>

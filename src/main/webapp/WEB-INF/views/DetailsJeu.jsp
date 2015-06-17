@@ -10,7 +10,7 @@
     <h3>Liste des missions</h3>
     <input type="hidden" name="uneErreur" value="${MesErreurs}" id="id_erreur">
 
-    <table class="table table-striped">
+    <table class="table table-bordered">
         <tr>
             <th>Numéro</th>
             <th>Libellé</th>
@@ -23,7 +23,7 @@
         </c:forEach>
     </table>
     <h3>Liste des actions</h3>
-    <table class="table table-striped">
+    <table class="table table-bordered">
         <tr>
             <th>Numéro</th>
             <th>Libellé</th>

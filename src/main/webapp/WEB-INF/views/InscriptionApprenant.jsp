@@ -7,7 +7,7 @@
 
 <template:Template>
 
-    <h4>Inscrire un apprenant</h4>
+    <h1>Inscrire un apprenant</h1>
 
     <div class="row col-md-5">
 

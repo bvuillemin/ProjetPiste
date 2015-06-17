@@ -9,7 +9,7 @@
     <h1>Détails des scores pour ${monapprenant.prenomapprenant} ${monapprenant.nomapprenant}</h1>
 
     <h3>Liste des scores</h3>
-    <table class="table table-striped">
+    <table class="table table-bordered">
         <tr>
             <th>Jeu</th>
             <th>Action</th>
