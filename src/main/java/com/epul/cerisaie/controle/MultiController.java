@@ -267,7 +267,7 @@ public class MultiController extends MultiActionController {
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
         }
-        destinationPage = "/InscriptionApprenant";
+        destinationPage = "/Inscription";
 
         return new ModelAndView(destinationPage);
 
@@ -286,8 +286,8 @@ public class MultiController extends MultiActionController {
         String destinationPage;
 
         HibernateClient unGestClient = new HibernateClient();
-        int idJeu = Integer.parseInt(request.getParameter("idJeu"));
-        int idApprenant = Integer.parseInt(request.getParameter("idApprenant"));
+        int idJeu = Integer.valueOf(request.getParameter("idJeu"));
+        int idApprenant = Integer.valueOf(request.getParameter("idApprenant"));
         Apprenant monApprenant = unGestClient.getUneLigne(idApprenant);
         Jeu monJeu = unGestClient.getUneLigneJeu(idJeu);
 
@@ -295,11 +295,11 @@ public class MultiController extends MultiActionController {
             unGestClient.inscrire(monJeu, monApprenant);
             List<Jeu> mesJeux = unGestClient.getTouslesJeux();
             request.setAttribute("mesjeux", mesJeux);
-
+            destinationPage = "/ListeJeux";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/ListeJeux";
 
         return new ModelAndView(destinationPage);
 
