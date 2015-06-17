@@ -9,24 +9,22 @@
     <input type="hidden" name="uneErreur" value="${MesErreurs}"
            id="id_erreur">
 
-    <form method="post" action="sauverJouet.htm">
+    <form method="post" action="ajouterApprenant.htm">
         <input type="hidden" name="type" value="ajout" id="type"/>
         <table BORDER="1" class="table table-stripped">
             <!-- input fields -->
             <tr>
                 <td>Numéro</td>
-                <td><LABEL FOR=id>"${apprenant.numapprenant}"</LABEL></td>
+                <td><input type="text" name="id" id="id"/></td>
             </tr>
             <tr>
                 <td>Prénom</td>
-                <td><input type="text" name="prenom"
-                           value="${apprenant.prenomapprenant}" id="prenom"/></td>
+                <td><input type="text" name="prenom" id="prenom"/></td>
             </tr>
 
             <tr>
                 <td>Nom</td>
-                <td><input type="text" name="nom"
-                           value="${apprenant.nomapprenant}" id="nom"/></td>
+                <td><input type="text" name="nom" id="nom"/></td>
             </tr>
 
             <!-- Boutons Modifier -->

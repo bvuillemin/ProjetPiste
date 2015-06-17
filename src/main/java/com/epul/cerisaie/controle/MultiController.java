@@ -70,30 +70,39 @@ public class MultiController extends MultiActionController {
 
 
     /**
-     * Modifier apprenant
+     * Ajouter un apprenant
      */
     @RequestMapping(value = "ajouterApprenant.htm")
     public ModelAndView ajouterApprenant(HttpServletRequest request,
                                          HttpServletResponse response) throws Exception {
 
-        String destinationPage = "Erreur";
+        String destinationPage;
         try {
             HibernateClient unGestClient = new HibernateClient();
-            if (unGestClient != null) {
-                Apprenant unApprenant = new Apprenant();
-                unApprenant.setNomapprenant(request.getParameter("nom"));
-                unApprenant.setPrenomapprenant(request.getParameter("prenom"));
-                unApprenant.setNumapprenant(Integer.parseInt(request.getParameter("id")));
-                unGestClient.ajouter(unApprenant);
-                List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
-                request.setAttribute("mesapprenants", mesApprenants);
-                destinationPage = "/ListeApprenants";
-            }
+            Apprenant unApprenant = new Apprenant();
+            unApprenant.setNomapprenant(request.getParameter("nom"));
+            unApprenant.setPrenomapprenant(request.getParameter("prenom"));
+            unApprenant.setNumapprenant(Integer.parseInt(request.getParameter("id")));
+            unGestClient.ajouter(unApprenant);
+            List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("mesapprenants", mesApprenants);
+            destinationPage = "/ListeApprenants";
 
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/Erreur";
         }
+
+        return new ModelAndView(destinationPage);
+    }
+
+    /**
+     * Page d'ajout d'un apprenant
+     */
+    @RequestMapping(value = "ajouterUnApprenant.htm")
+    public ModelAndView ajouterUnApprenant(HttpServletRequest request,
+                                         HttpServletResponse response) throws Exception {
+        String destinationPage = "/AjoutApprenant";
 
         return new ModelAndView(destinationPage);
     }
