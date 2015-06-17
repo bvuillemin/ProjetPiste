@@ -74,7 +74,7 @@ public class Apprenant implements java.io.Serializable {
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "appartient", catalog = "permispiste", joinColumns = { @JoinColumn(name = "NUMJEU", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "NUMACTION", nullable = false, updatable = false) })
+    @JoinTable(name = "inscrit", catalog = "permispiste", joinColumns = { @JoinColumn(name = "NUMAPPRENANT", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "NUMJEU", nullable = false, updatable = false) })
     public List<Jeu> getMonJeu() {
         return monJeu;
     }

@@ -21,7 +21,7 @@
                 <td>${item.numjeu}</td>
                 <td>${item.libellejeu}</td>
                 <td>
-                    <form method="post" action="InscriptionJeu.htm">
+                    <form method="post" action="Inscription.htm">
                         <input type="hidden" name="id" value="${item.numjeu}"/>
                         <button class="btn btn-info col-lg-10" type="submit" name="inscription" value="Inscription">
                             Inscription

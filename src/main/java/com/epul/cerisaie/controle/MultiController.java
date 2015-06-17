@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.SchemaOutputResolver;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -32,8 +31,6 @@ public class MultiController extends MultiActionController {
     /**
      * Simply selects the home view to render by returning its name.
      */
-
-
     @RequestMapping(value = "Index.htm", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
         logger.info("Welcome home! The client locale is {}.", locale);
@@ -58,16 +55,14 @@ public class MultiController extends MultiActionController {
         try {
             List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
             request.setAttribute("mesapprenants", mesApprenants);
-
+            destinationPage = "/ListeApprenants";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/ListeApprenants";
-
         return new ModelAndView(destinationPage);
 
     }
-
 
     /**
      * Ajouter un apprenant
@@ -87,12 +82,10 @@ public class MultiController extends MultiActionController {
             List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
             request.setAttribute("mesapprenants", mesApprenants);
             destinationPage = "/ListeApprenants";
-
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/Erreur";
         }
-
         return new ModelAndView(destinationPage);
     }
 
@@ -103,10 +96,8 @@ public class MultiController extends MultiActionController {
     public ModelAndView ajouterUnApprenant(HttpServletRequest request,
                                          HttpServletResponse response) throws Exception {
         String destinationPage = "/AjoutApprenant";
-
         return new ModelAndView(destinationPage);
     }
-
 
     /**
      * Sauvegarde d'un apprenant
@@ -130,7 +121,6 @@ public class MultiController extends MultiActionController {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/Erreur";
         }
-
         return new ModelAndView(destinationPage);
 
     }
@@ -139,25 +129,19 @@ public class MultiController extends MultiActionController {
      * Modifier apprenant
      */
     @RequestMapping(value = "modifierApprenant.htm")
-
     public ModelAndView modifierApprenant(HttpServletRequest request,
                                           HttpServletResponse response) throws Exception {
-
-        String destinationPage = "Erreur";
+        String destinationPage;
         try {
             HibernateClient unGestClient = new HibernateClient();
             int id = Integer.parseInt(request.getParameter("id"));
-
-            if (unGestClient != null) {
-                Apprenant unApprenant = unGestClient.getUneLigne(id);
-                request.setAttribute("apprenant", unApprenant);
-                destinationPage = "/ModifierApprenant";
-            }
-
+            Apprenant unApprenant = unGestClient.getUneLigne(id);
+            request.setAttribute("apprenant", unApprenant);
+            destinationPage = "/ModifierApprenant";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-
         return new ModelAndView(destinationPage);
     }
 
@@ -174,11 +158,11 @@ public class MultiController extends MultiActionController {
         try {
             List<Apprenant> mesapprenants = unGestClient.getTouteslesLignes();
             request.setAttribute("mesapprenants", mesapprenants);
+            destinationPage = "/SelectApprenantScore";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/SelectApprenantScore";
-
         return new ModelAndView(destinationPage);
 
     }
@@ -196,36 +180,15 @@ public class MultiController extends MultiActionController {
             Apprenant monapprenant = unGestClient.getUneLigne(0);
             request.setAttribute("monapprenant", monapprenant);
             request.setAttribute("messcores", monapprenant.getObtients());
-
+            destinationPage = "/ListeScores";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/ListeScores";
-
         return new ModelAndView(destinationPage);
 
     }
 
-    /**
-     * Selection d'un apprenant pour l'affichage des scores
-     */
-    @RequestMapping(value = "SelectApprenantBilan.htm")
-    public ModelAndView selectApprenantBilan(HttpServletRequest request,
-                                             HttpServletResponse response) throws Exception {
-        String destinationPage;
-
-        HibernateClient unGestClient = new HibernateClient();
-        try {
-            List<Apprenant> mesapprenants = unGestClient.getTouteslesLignes();
-            request.setAttribute("mesapprenants", mesapprenants);
-        } catch (Exception e) {
-            request.setAttribute("MesErreurs", e.getMessage());
-        }
-        destinationPage = "/SelectApprenantBilan";
-
-        return new ModelAndView(destinationPage);
-
-    }
 
     /**
      * Affichage des scores
@@ -237,15 +200,15 @@ public class MultiController extends MultiActionController {
 
         HibernateClient unGestClient = new HibernateClient();
         try {
-            Apprenant monapprenant = unGestClient.getUneLigne(0);
+            int id = Integer.parseInt(request.getParameter("id"));
+            Apprenant monapprenant = unGestClient.getUneLigne(id);
             request.setAttribute("monapprenant", monapprenant);
             request.setAttribute("messcores", monapprenant.getObtients());
-
+            destinationPage = "/BilanApprenant";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/Bilan";
-
         return new ModelAndView(destinationPage);
 
     }
@@ -281,6 +244,68 @@ public class MultiController extends MultiActionController {
 
 
     /**
+     * Envoie sur la page d'inscription
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "Inscription.htm")
+    public ModelAndView inscription(HttpServletRequest request,
+                                        HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        int idJeu = Integer.parseInt(request.getParameter("id"));
+
+        try {
+            Jeu unJeu = unGestClient.getUneLigneJeu(idJeu);
+            List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("monJeu", unJeu);
+            request.setAttribute("mesapprenants", mesApprenants);
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/InscriptionApprenant";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Finalise l'inscription d'un apprenant
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "InscriptionApprenant.htm")
+    public ModelAndView inscriptionApprenant(HttpServletRequest request,
+                                    HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        int idJeu = Integer.parseInt(request.getParameter("idJeu"));
+        int idApprenant = Integer.parseInt(request.getParameter("idApprenant"));
+        Apprenant monApprenant = unGestClient.getUneLigne(idApprenant);
+        Jeu monJeu = unGestClient.getUneLigneJeu(idJeu);
+
+        try {
+            unGestClient.inscrire(monJeu, monApprenant);
+            List<Jeu> mesJeux = unGestClient.getTouslesJeux();
+            request.setAttribute("mesjeux", mesJeux);
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeJeux";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
      * Affichage de tous les jouets
      */
     @RequestMapping(value = "ListeJeux.htm")
@@ -292,12 +317,12 @@ public class MultiController extends MultiActionController {
         try {
             List<Jeu> mesJeux = unGestClient.getTouslesJeux();
             request.setAttribute("mesjeux", mesJeux);
+            destinationPage = "/ListeJeux";
 
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "/Erreur";
         }
-        destinationPage = "/ListeJeux";
-
         return new ModelAndView(destinationPage);
 
     }
@@ -317,12 +342,10 @@ public class MultiController extends MultiActionController {
             request.setAttribute("mesmissions", monJeu.getMissions());
             request.setAttribute("mesactions", monJeu.getActions());
             destinationPage = "/DetailsJeu";
-
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "/Erreur";
         }
-
         return new ModelAndView(destinationPage);
 
     }
