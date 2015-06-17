@@ -33,7 +33,6 @@
                                 <c:forEach items="${mesapprenants}" var="item">
                                     <OPTION>${item.nomapprenant}</OPTION>
                                         </c:forEach>
-
                             </SELECT>
                         </FORM>
                 </tr>
