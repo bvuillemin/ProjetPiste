@@ -1,7 +1,32 @@
 body {
     padding-top: 70px;
-    background-color: #eeeeee;
+    background-color: rgba(222, 222, 247, 1);
     width: 98%;
+}
+
+#btn-info {
+    background-color: rgba(69, 69, 118, 0.75);
+}
+
+#btn-danger {
+    background-color: rgba(166, 65, 62, 0.75);
+}
+
+#table {
+    border: 1px;
+    background: #565656;
+}
+
+#footer-custom {
+    color: white;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background: rgba(237, 187, 146, 1);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background: rgba(234, 169, 116, 1)
 }
 
 #face {
@@ -40,13 +65,15 @@ th {
     width: 80%
 }
 
-#footer{
+#footer {
     text-align: center;
     position: absolute;
-    bottom: 0; left: 0; right: 0
+    bottom: 0;
+    left: 0;
+    right: 0
 }
 
-#imageAccueil{
+#imageAccueil {
     display: block;
     margin-left: auto;
     margin-right: auto
