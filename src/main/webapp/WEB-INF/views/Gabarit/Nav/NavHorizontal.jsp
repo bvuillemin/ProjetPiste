@@ -22,7 +22,7 @@
              aria-expanded="false">Apprenants <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="ListeApprenants.htm">Affichage</a></li>
-            <li><a href="AjoutApprenant.htm">Ajout</a></li>
+            <li><a href="ajouterUnApprenant.htm">Ajout</a></li>
           </ul>
         </li>
         <li><a href="ListeJeux.htm">Affichage des Jeux</a></li>
