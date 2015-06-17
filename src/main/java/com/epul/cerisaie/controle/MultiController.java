@@ -281,6 +281,68 @@ public class MultiController extends MultiActionController {
 
 
     /**
+     * Envoie sur la page d'inscription
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "Inscription.htm")
+    public ModelAndView inscription(HttpServletRequest request,
+                                        HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        int idJeu = Integer.parseInt(request.getParameter("id"));
+
+        try {
+            Jeu unJeu = unGestClient.getUneLigneJeu(idJeu);
+            List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
+            request.setAttribute("monJeu", unJeu);
+            request.setAttribute("mesapprenants", mesApprenants);
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/InscriptionApprenant";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
+     * Finalise l'inscription d'un apprenant
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "InscriptionApprenant.htm")
+    public ModelAndView inscriptionApprenant(HttpServletRequest request,
+                                    HttpServletResponse response) throws Exception {
+        String destinationPage;
+
+        HibernateClient unGestClient = new HibernateClient();
+        int idJeu = Integer.parseInt(request.getParameter("idJeu"));
+        int idApprenant = Integer.parseInt(request.getParameter("idApprenant"));
+        Apprenant monApprenant = unGestClient.getUneLigne(idApprenant);
+        Jeu monJeu = unGestClient.getUneLigneJeu(idJeu);
+
+        try {
+            unGestClient.inscrire(monJeu, monApprenant);
+            List<Jeu> mesJeux = unGestClient.getTouslesJeux();
+            request.setAttribute("mesjeux", mesJeux);
+
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+        }
+        destinationPage = "/ListeJeux";
+
+        return new ModelAndView(destinationPage);
+
+    }
+
+    /**
      * Affichage de tous les jouets
      */
     @RequestMapping(value = "ListeJeux.htm")

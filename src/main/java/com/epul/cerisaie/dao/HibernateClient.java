@@ -171,4 +171,22 @@ public class HibernateClient {
         }
         return unJeu;
     }
+
+    public void inscrire(Jeu monJeu, Apprenant monApprenant) throws HibernateException,
+            ServiceHibernateException {
+        Transaction tx = null;
+        monApprenant.getMonJeu().add(monJeu);
+        try {
+            session = ServiceHibernate.currentSession();
+            tx = session.beginTransaction();
+            // on transf�re l'apprenant � la base
+            session.update(monApprenant);
+            tx.commit();
+        } catch (Exception ex) {
+
+            System.out.println("Erreur ServiceHiber : " + ex.getMessage());
+
+            throw new MonException("Erreur  Hibernate: ", ex.getMessage());
+        }
+    }
 }

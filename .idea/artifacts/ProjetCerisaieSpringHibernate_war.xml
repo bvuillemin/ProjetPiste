@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="cerisaie-1.0.0-BUILD-SNAPSHOT.war">
       <element id="artifact" artifact-name="ProjetCerisaieSpringHibernate:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../hibernate-3.6.6.jar" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
