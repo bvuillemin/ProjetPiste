@@ -261,7 +261,7 @@ public class MultiController extends MultiActionController {
         try {
             Jeu unJeu = unGestClient.getUneLigneJeu(idJeu);
             List<Apprenant> mesApprenants = unGestClient.getTouteslesLignes();
-            request.setAttribute("monJeu", unJeu);
+            request.setAttribute("unjeu", unJeu);
             request.setAttribute("mesapprenants", mesApprenants);
 
         } catch (Exception e) {

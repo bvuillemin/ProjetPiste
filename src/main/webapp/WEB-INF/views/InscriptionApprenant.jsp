@@ -13,17 +13,17 @@
 
 
         <form method="post" action="InscriptionApprenant.htm">
-            <input type="hidden" name="jeu" value="${unJeu}" id="jeu"/>
-            <input type="hidden" name="apprenants" value="${mesApprenants}" id="apprenants"/>
+            <input type="hidden" name="jeu" value="${unjeu}" id="jeu"/>
+            <input type="hidden" name="apprenants" value="${mesapprenants}" id="apprenants"/>
             <table class="table">
 
                 <tr>
                     <td>Numéro du Jeu</td>
-                    <td><LABEL FOR=jeu>${unJeu.numjeu}</LABEL></td>
+                    <td><LABEL FOR=jeu>${unjeu.numjeu}</LABEL></td>
                 </tr>
                 <tr>
                     <td>Libellé du Jeu</td>
-                    <td><LABEL FOR=jeu>${unJeu.libellejeu}</LABEL></td>
+                    <td><LABEL FOR=jeu>${unjeu.libellejeu}</LABEL></td>
                 </tr>
                 <tr>
                     <td>Numéro d'apprenant</td>
@@ -31,7 +31,7 @@
                         <FORM>
                             <SELECT name="apprenants" size="1">
                                 <c:forEach items="${mesapprenants}" var="item">
-                                    <OPTION>${item.nomapprenant}</OPTION>
+                                    <OPTION value="${item.numapprenant}">${item.nomapprenant}</OPTION>
                                         </c:forEach>
                             </SELECT>
                         </FORM>
@@ -43,7 +43,7 @@
                                value="Inscrire"/></td>
                 </tr>
             </table>
-            <input type="hidden" name="jeu" value="${mesApprenants}}" id="jeu"/>
+            <input type="hidden" name="jeu" value="${mesapprenants}}" id="jeu"/>
         </form>
 
     </div>
