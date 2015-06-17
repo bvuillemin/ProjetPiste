@@ -64,7 +64,7 @@ public class Apprenant implements java.io.Serializable {
         this.prenomapprenant = prenomapprenant;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "apprenant")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "apprenant")
     public List<Obtient> getObtients() {
         return this.mesResultats;
     }

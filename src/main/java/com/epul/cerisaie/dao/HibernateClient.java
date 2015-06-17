@@ -1,15 +1,16 @@
 package com.epul.cerisaie.dao;
 
-import com.epul.cerisaie.hibernate.metier.Apprenant;
-import com.epul.cerisaie.hibernate.metier.Jeu;
-import com.epul.cerisaie.hibernate.metier.Mission;
-import org.hibernate.*;
-
-import com.epul.cerisaie.service.ServiceHibernate;
 import com.epul.cerisaie.gestiondeserreurs.MonException;
 import com.epul.cerisaie.gestiondeserreurs.ServiceHibernateException;
+import com.epul.cerisaie.hibernate.metier.Apprenant;
+import com.epul.cerisaie.hibernate.metier.Jeu;
+import com.epul.cerisaie.service.ServiceHibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.util.*;
+import java.util.List;
 
 public class HibernateClient {
 
@@ -173,20 +174,24 @@ public class HibernateClient {
         return unJeu;
     }
 
-    public void inscrire(Jeu monJeu, Apprenant monApprenant) throws HibernateException,
-            ServiceHibernateException {
+    public void inscrire(Jeu monJeu, Apprenant monApprenant) throws Exception, ServiceHibernateException {
         Transaction tx = null;
         monApprenant.getMonJeu().add(monJeu);
         try {
+            ServiceHibernate.closeSession();
             session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
             // on transf�re l'apprenant � la base
             session.update(monApprenant);
             tx.commit();
+        } catch (ServiceHibernateException ex) {
+            throw new ServiceHibernateException("Erreur de service Hibernate: "
+                    + ex.getMessage(), ex);
         } catch (Exception ex) {
-
-            System.out.println("Erreur ServiceHiber : " + ex.getMessage());
-
+            if (tx != null) {
+                tx.rollback();
+            }
+            // on remonte l'erreur
             throw new MonException("Erreur  Hibernate: ", ex.getMessage());
         }
     }
