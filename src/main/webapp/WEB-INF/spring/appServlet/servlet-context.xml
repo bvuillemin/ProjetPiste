@@ -27,6 +27,6 @@
 
 	
 
-	<context:component-scan base-package="com.epul.cerisaie" />
+	<context:component-scan base-package="com.epul.projetpiste" />
 
 </beans:beans>

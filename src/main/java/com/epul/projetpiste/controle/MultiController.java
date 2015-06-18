@@ -1,8 +1,9 @@
-package com.epul.cerisaie.controle;
+package com.epul.projetpiste.controle;
 
-import com.epul.cerisaie.dao.HibernateClient;
-import com.epul.cerisaie.hibernate.metier.Apprenant;
-import com.epul.cerisaie.hibernate.metier.Jeu;
+import com.epul.projetpiste.dao.HibernateClient;
+import com.epul.projetpiste.hibernate.metier.Apprenant;
+import com.epul.projetpiste.hibernate.metier.Calendrier;
+import com.epul.projetpiste.hibernate.metier.Jeu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -27,7 +29,15 @@ public class MultiController extends MultiActionController {
 
     private static final Logger logger = LoggerFactory
             .getLogger(MultiController.class);
-
+    // le format est une combinaison de MM dd yyyy avec / ou �
+    // exemple dd/MM/yyyy
+    public Date conversionChaineenDate(String unedate, String unformat) throws Exception {
+        Date datesortie;
+        // on d�finit un format de sortie
+        SimpleDateFormat defFormat = new SimpleDateFormat(unformat);
+        datesortie = defFormat.parse(unedate);
+        return datesortie;
+    }
     /**
      * Simply selects the home view to render by returning its name.
      */
@@ -167,28 +177,6 @@ public class MultiController extends MultiActionController {
 
     }
 
-    /**
-     * Affichage des scores
-     */
-    @RequestMapping(value = "ListeScores.htm")
-    public ModelAndView afficherLesScores(HttpServletRequest request,
-                                          HttpServletResponse response) throws Exception {
-        String destinationPage;
-
-        HibernateClient unGestClient = new HibernateClient();
-        try {
-            Apprenant monapprenant = unGestClient.getUneLigne(0);
-            request.setAttribute("monapprenant", monapprenant);
-            request.setAttribute("messcores", monapprenant.getObtients());
-            destinationPage = "/ListeScores";
-        } catch (Exception e) {
-            request.setAttribute("MesErreurs", e.getMessage());
-            destinationPage = "/Erreur";
-        }
-        return new ModelAndView(destinationPage);
-
-    }
-
 
     /**
      * Affichage des scores
@@ -288,11 +276,13 @@ public class MultiController extends MultiActionController {
         HibernateClient unGestClient = new HibernateClient();
         int idJeu = Integer.valueOf(request.getParameter("idJeu"));
         int idApprenant = Integer.valueOf(request.getParameter("idApprenant"));
+        Date d = conversionChaineenDate(request.getParameter("date"), "dd/MM/yyyy");
         Apprenant monApprenant = unGestClient.getUneLigne(idApprenant);
         Jeu monJeu = unGestClient.getUneLigneJeu(idJeu);
 
         try {
-            unGestClient.inscrire(monJeu, monApprenant);
+            Calendrier c = new Calendrier(d);
+            unGestClient.inscrire(monJeu, monApprenant, c);
             List<Jeu> mesJeux = unGestClient.getTouslesJeux();
             request.setAttribute("mesjeux", mesJeux);
             destinationPage = "/ListeJeux";

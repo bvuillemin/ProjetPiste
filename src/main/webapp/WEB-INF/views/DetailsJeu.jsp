@@ -34,11 +34,5 @@
                 <td>${item.libaction}</td>
             </tr>
         </c:forEach>
-
-        <tr>
-            <td colspan="5">
-                &nbsp;&nbsp;
-            </td>
-        </tr>
     </table>
 </template:Template>

@@ -1,4 +1,4 @@
-package com.epul.cerisaie.hibernate.metier;
+package com.epul.projetpiste.hibernate.metier;
 
 // Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1
 

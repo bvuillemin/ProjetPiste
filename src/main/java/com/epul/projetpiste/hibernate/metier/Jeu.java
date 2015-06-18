@@ -1,4 +1,4 @@
-package com.epul.cerisaie.hibernate.metier;
+package com.epul.projetpiste.hibernate.metier;
 
 // Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1
 
@@ -27,6 +27,7 @@ public class Jeu implements java.io.Serializable {
 	
 	private List<Action> mesActions = new ArrayList<Action>();
 	private List<Mission> mesMissions = new ArrayList<Mission>();
+	private List<Inscrit> mesInscriptions = new ArrayList<Inscrit>();
 	
 
 	public Jeu() {
@@ -79,6 +80,15 @@ public class Jeu implements java.io.Serializable {
 
 	public void setActions(List<Action> actions) {
 		this.mesActions = actions;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jeu")
+	public List<Inscrit> getMesInscriptions() {
+		return this.mesInscriptions;
+	}
+
+	public void setMesInscriptions(List<Inscrit> mesInscriptions) {
+		this.mesInscriptions = mesInscriptions;
 	}
 
 }
