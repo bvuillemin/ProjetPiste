@@ -1,4 +1,4 @@
-package com.epul.cerisaie.hibernate.metier;
+package com.epul.projetpiste.hibernate.metier;
 
 // Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1
 
@@ -24,6 +24,7 @@ public class Calendrier implements java.io.Serializable {
 
 	private Date datejour;
 	List<Obtient> mesResultats = new ArrayList<Obtient>();
+	List<Inscrit> mesInscriptions = new ArrayList<Inscrit>();
 
 	public Calendrier() {
 	}
@@ -55,6 +56,15 @@ public class Calendrier implements java.io.Serializable {
 
 	public void setObtients(List<Obtient> obtients) {
 		this.mesResultats = obtients;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "calendrier")
+	public List<Inscrit> getMesInscriptions() {
+		return this.mesInscriptions;
+	}
+
+	public void setMesInscriptions(List<Inscrit> mesInscriptions) {
+		this.mesInscriptions = mesInscriptions;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.epul.cerisaie.hibernate.metier;
+package com.epul.projetpiste.hibernate.metier;
 
 // Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1
 
@@ -19,7 +19,7 @@ public class Apprenant implements java.io.Serializable {
     private String nomapprenant;
     private String prenomapprenant;
     List<Obtient> mesResultats = new ArrayList<Obtient>();
-    List<Jeu> monJeu = new ArrayList<Jeu>();
+    List<Inscrit> mesInscriptions = new ArrayList<Inscrit>();
 
     public Apprenant() {
     }
@@ -29,11 +29,12 @@ public class Apprenant implements java.io.Serializable {
     }
 
     public Apprenant(int numapprenant, String nomapprenant,
-                     String prenomapprenant, List<Obtient> obtients) {
+                     String prenomapprenant, List<Obtient> obtients, List<Inscrit> mesInscriptions) {
         this.numapprenant = numapprenant;
         this.nomapprenant = nomapprenant;
         this.prenomapprenant = prenomapprenant;
         this.mesResultats = obtients;
+        this.mesInscriptions = mesInscriptions;
     }
 
     @Id
@@ -73,13 +74,12 @@ public class Apprenant implements java.io.Serializable {
         this.mesResultats = obtients;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "inscrit", catalog = "permispiste", joinColumns = { @JoinColumn(name = "NUMAPPRENANT", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "NUMJEU", nullable = false, updatable = false) })
-    public List<Jeu> getMonJeu() {
-        return monJeu;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "apprenant")
+    public List<Inscrit> getMesInscriptions() {
+        return this.mesInscriptions;
     }
 
-    public void setMonJeu(List<Jeu> monJeu) {
-        this.monJeu = monJeu;
+    public void setMesInscriptions(List<Inscrit> mesInscriptions) {
+        this.mesInscriptions = mesInscriptions;
     }
 }

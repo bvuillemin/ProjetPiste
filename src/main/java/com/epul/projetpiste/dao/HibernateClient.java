@@ -1,10 +1,9 @@
-package com.epul.cerisaie.dao;
+package com.epul.projetpiste.dao;
 
-import com.epul.cerisaie.gestiondeserreurs.MonException;
-import com.epul.cerisaie.gestiondeserreurs.ServiceHibernateException;
-import com.epul.cerisaie.hibernate.metier.Apprenant;
-import com.epul.cerisaie.hibernate.metier.Jeu;
-import com.epul.cerisaie.service.ServiceHibernate;
+import com.epul.projetpiste.gestiondeserreurs.MonException;
+import com.epul.projetpiste.gestiondeserreurs.ServiceHibernateException;
+import com.epul.projetpiste.hibernate.metier.*;
+import com.epul.projetpiste.service.ServiceHibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -174,14 +173,17 @@ public class HibernateClient {
         return unJeu;
     }
 
-    public void inscrire(Jeu monJeu, Apprenant monApprenant) throws Exception, ServiceHibernateException {
+    public void inscrire(Jeu monJeu, Apprenant monApprenant, Calendrier calendrier) throws Exception, ServiceHibernateException {
         Transaction tx = null;
-        monApprenant.getMonJeu().add(monJeu);
+        InscritId iId = new InscritId(monJeu.getNumjeu(), monApprenant.getNumapprenant(), calendrier.getDatejour());
+        Inscrit i = new Inscrit(iId, monJeu, monApprenant, calendrier);
+        monApprenant.getMesInscriptions().add(i);
         try {
             ServiceHibernate.closeSession();
             session = ServiceHibernate.currentSession();
             tx = session.beginTransaction();
             // on transf�re l'apprenant � la base
+            session.saveOrUpdate(calendrier);
             session.update(monApprenant);
             tx.commit();
         } catch (ServiceHibernateException ex) {

@@ -5,13 +5,22 @@
 
 
 <template:Template>
-
+    <script language=javascript>
+        function verif() {
+            if (document.getElementById("date").value == ""){
+                alert("La date n'est pas remplie !");
+                return false;
+            }
+            else
+                return true;
+        }
+    </script>
     <h4>Inscrire un apprenant</h4>
 
     <div class="row col-md-5">
 
 
-        <form method="post" action="InscriptionApprenant.htm">
+        <form method="post" action="InscriptionApprenant.htm" onsubmit="return verif();">
             <input type="hidden" name="idJeu" value="${unjeu.numjeu}"/>
             <table class="table">
 
@@ -22,6 +31,12 @@
                 <tr>
                     <td>Libellé du Jeu</td>
                     <td><LABEL FOR=jeu>${unjeu.libellejeu}</LABEL></td>
+                </tr>
+                <tr>
+                    <td>Date d'inscription</td>
+                    <td>
+                        <input type="date" placeholder="jj/mm/aaaa" name="date" id="date">
+                    </td>
                 </tr>
                 <tr>
                     <td>Nom de l'apprenant</td>

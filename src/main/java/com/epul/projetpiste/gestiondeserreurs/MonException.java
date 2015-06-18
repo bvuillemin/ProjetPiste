@@ -1,4 +1,4 @@
-package com.epul.cerisaie.gestiondeserreurs;
+package com.epul.projetpiste.gestiondeserreurs;
 
 public class MonException extends RuntimeException {
 

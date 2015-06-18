@@ -1,12 +1,11 @@
-package com.epul.cerisaie.service;
+package com.epul.projetpiste.service;
 
-import com.epul.cerisaie.gestiondeserreurs.*;
+import com.epul.projetpiste.gestiondeserreurs.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import com.epul.cerisaie.hibernate.metier.*;
 
 public class ServiceHibernate {
 
@@ -52,7 +51,7 @@ public class ServiceHibernate {
 		} catch (Exception ex) {
 			System.out.println("session " + ex.getMessage());
 			throw new ServiceHibernateException(
-					"Impossible d'accéder à la SessionFactory: "
+					"Impossible d'accï¿½der ï¿½ la SessionFactory: "
 							+ ex.getMessage(), ex);
 			
 		}

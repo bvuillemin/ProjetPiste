@@ -4,12 +4,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <template:Template>
+    <script language=javascript>
+        function verif() {
+            if (document.getElementById("id").value == "" ||
+                    document.getElementById("prenom").value == "" ||
+                    document.getElementById("nom").value == "") {
+                alert("Un des champs n'est pas rempli !");
+                return false;
+            }
+            else
+                return true;
+        }
+    </script>
 
     <h1>Ajouter un apprenant</h1>
 
     <div class="row col-md-5">
 
-        <form method="post" action="ajouterApprenant.htm">
+        <form method="post" action="ajouterApprenant.htm" onsubmit="return verif();">
             <input type="hidden" name="type" value="ajout" id="type"/>
             <table class="table">
 
