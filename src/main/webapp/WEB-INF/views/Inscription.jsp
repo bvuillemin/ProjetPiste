@@ -35,7 +35,7 @@
                 <tr>
                     <td>Date d'inscription</td>
                     <td>
-                        <input type="text" placeholder="jj/mm/aaaa" name="date" id="date">
+                        <input type="date" placeholder="jj/mm/aaaa" name="date" id="date">
                     </td>
                 </tr>
                 <tr>
